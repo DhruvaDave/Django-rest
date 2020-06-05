@@ -46,7 +46,7 @@ class UpdateActivityPostForm(forms.ModelForm):
 		activity_post.start_time = self.cleaned_data['start_time']
 		activity_post.end_time = self.cleaned_data['end_time']
 
-		
+		print("------activity_post-------edit----",activity_post)
 		if commit:
 			activity_post.save()
 		return activity_post

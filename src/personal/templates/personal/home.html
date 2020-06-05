@@ -40,30 +40,27 @@
 			<!-- Top 'create post' bar -->
 			<div class="d-lg-none mb-3">
 				<div class="card m-auto d-flex flex-column p-3">
-					<img class="img-fluid d-block m-auto pb-2" src="{% static 'codingwithmitch_logo.png' %}" width="72" height="72">
-					<p class="lead">In this course you'll learn how to build a simple blog with user registration and blog CRUD functionality. Django is a powerful 
-	  					framework and you'll see why in this course.</p>
-					<p class="m-auto"><a class="btn btn-primary" href="{% url 'blog:create' %}">Create post</a></p>
+					
 				</div>
 			</div>
 			<!-- end Top 'create post' bar -->
 
 			<!-- Blog posts-->
-			{% if blog_posts %}
-				{% for post in blog_posts %}
+			{% if activity_posts %}
+				{% for post in activity_posts %}
 					<div class="blog-post-container">
-						{% include 'blog/snippets/blog_post_snippet.html' with blog_post=post %}
+						{% include 'blog/snippets/activity_post_snippet.html' with activity_post=post %}
 					</div>
 				{% endfor %}
 			{% else %}
 				<div class="blog-post-container">
-					{% include 'blog/snippets/blog_post_snippet.html' with query=query %}
+					{% include 'blog/snippets/activity_post_snippet.html' with query=query %}
 				</div>
 			{% endif %}
 			<!-- End Blog posts-->
 			
 			<!-- Pagination -->
-			{% include 'blog/snippets/blog_post_pagination.html' with blog_posts=blog_posts %}
+			{% include 'blog/snippets/activity_post_pagination.html' with activity_posts=activity_posts %}
 
 		</div>
 		<!-- end blog feed -->
@@ -74,10 +71,10 @@
 		<div class="right-column col-lg-3 d-lg-flex d-none flex-column">
 
 			<div class="card create-post-bar d-flex flex-column p-3">
-				<img class="img-fluid d-block m-auto pb-2" src="{% static 'codingwithmitch_logo.png' %}" width="72" height="72">
-				<p class="lead">In this course you'll learn how to build a simple blog with user registration and blog CRUD functionality. Django is a powerful 
-  					framework and you'll see why in this course.</p>
-				<p class="m-auto"><a class="btn btn-primary" href="{% url 'blog:create' %}">Create post</a></p>
+				<!-- <img class="img-fluid d-block m-auto pb-2" src="{% static 'codingwithmitch_logo.png' %}" width="72" height="72"> -->
+				<!-- <p class="lead">In this course you'll learn how to build a simple blog with user registration and blog CRUD functionality. Django is a powerful 
+  					framework and you'll see why in this course.</p> -->
+				<p class="m-auto"><a class="btn btn-primary" href="/blog/activity/create">Create Activity</a></p>
 			</div>
 		
 		</div>

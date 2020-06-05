@@ -71,7 +71,8 @@ def detail_activity_view(request, slug):
 
 	context = {}
 
-	activity_post = get_object_or_404(BlogPost, slug=slug)
+	activity_post = get_object_or_404(ActivityPost, slug=slug)
+	print("---activity_post---",activity_post)
 	context['activity_post'] = activity_post
 
 	return render(request, 'blog/detail_activity.html', context)
@@ -116,13 +117,15 @@ def edit_activity_view(request, slug):
 	if not user.is_authenticated:
 		return redirect("must_authenticate")
 
-	activity_post = get_object_or_404(BlogPost, slug=slug)
+	activity_post = get_object_or_404(ActivityPost, slug=slug)
 
 	if activity_post.author != user:
 		return HttpResponse("You are not the author of that post.")
 
 	if request.POST:
 		form = UpdateActivityPostForm(request.POST or None, request.FILES or None, instance=activity_post)
+		print("-------form--------",form)
+		print("-------form--------",form.errors)
 		if form.is_valid():
 			obj = form.save(commit=False)
 			obj.save()
@@ -154,18 +157,16 @@ def get_blog_queryset(query=None):
 			queryset.append(post)
 
 	return list(set(queryset))	
+	
+def get_activity_queryset(query=None):
+	queryset = []
+	queries = query.split(" ") # python install 2019 = [python, install, 2019]
+	for q in queries:
+		posts = ActivityPost.objects.filter(
+				Q(title__icontains=q) 
+			).distinct()
 
+		for post in posts:
+			queryset.append(post)
 
-# def get_activity_queryset(query=None):
-# 	queryset = []
-# 	queries = query.split(" ") # python install 2019 = [python, install, 2019]
-# 	for q in queries:
-# 		posts = ActivityPost.objects.filter(
-# 				Q(title__icontains=q) | 
-# 				Q(body__icontains=q)
-# 			).distinct()
-
-# 		for post in posts:
-# 			queryset.append(post)
-
-# 	return list(set(queryset))	
+	return list(set(queryset))

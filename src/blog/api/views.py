@@ -259,34 +259,15 @@ class ApiBlogListView(ListAPIView):
 	filter_backends = (SearchFilter, OrderingFilter)
 	search_fields = ('title', 'body', 'author__username')
 
-# class ApiUserListView(ListAPIView):
-#     serializer_class = UserSerializer
-#     authentication_classes = (TokenAuthentication,)
-#     permission_classes = (IsAuthenticated,)
-#     # pagination_class = PageNumberPagination
-#     filter_backends = (SearchFilter, OrderingFilter)
-#     queryset = ActivityPost.objects.all()
-
-
 class ApiActivityListView(ListAPIView):
     serializer_class = ActivityPostSerializer
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
-    # pagination_class = PageNumberPagination
     filter_backends = (SearchFilter, OrderingFilter)
     queryset = ActivityPost.objects.all()
-	# queryset = ActivityPost.filters(author=self.request.user)
 
     def get_queryset(self):
         user = self.request.user
-        print("----user---",user)
-        print("----user---",user.pk)
         queryset = self.queryset
-        # return queryset.filter(author=user)
-        # return queryset.objects.filter(data=id).order_by('-date')
-
-        # return ActivityPost.objects.filter(author=user)
         return queryset.distinct()
-        # return queryset.annotate(author_id=user.pk).distinct()
-        # return queryset.values('author').order_by()
 
