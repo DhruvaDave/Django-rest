@@ -45,7 +45,6 @@ urlpatterns = [
     path('api/blog/', include('blog.api.urls', 'blog_api')),
     path('api/account/', include('account.api.urls', 'account_api')),
 
-    # Password reset links (ref: https://github.com/django/django/blob/master/django/contrib/auth/views.py)
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='registration/password_change_done.html'), 
         name='password_change_done'),
 

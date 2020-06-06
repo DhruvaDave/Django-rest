@@ -13,7 +13,6 @@ from account.models import Account
 from rest_framework.authtoken.models import Token
 
 # Register
-# Response: https://gist.github.com/mitchtabian/c13c41fa0f51b304d7638b7bac7cb694
 # Url: https://<your-domain>/api/account/register
 @api_view(['POST', ])
 @permission_classes([])
@@ -68,7 +67,6 @@ def validate_username(username):
 
 
 # Account properties
-# Response: https://gist.github.com/mitchtabian/4adaaaabc767df73c5001a44b4828ca5
 # Url: https://<your-domain>/api/account/
 # Headers: Authorization: Token <token>
 @api_view(['GET', ])
@@ -86,7 +84,6 @@ def account_properties_view(request):
 
 
 # Account update properties
-# Response: https://gist.github.com/mitchtabian/72bb4c4811199b1d303eb2d71ec932b2
 # Url: https://<your-domain>/api/account/properties/update
 # Headers: Authorization: Token <token>
 @api_view(['PUT',])
@@ -110,7 +107,6 @@ def update_account_view(request):
 
 
 # LOGIN
-# Response: https://gist.github.com/mitchtabian/8e1bde81b3be342853ddfcc45ec0df8a
 # URL: http://127.0.0.1:8000/api/account/login
 class ObtainAuthTokenView(APIView):
 

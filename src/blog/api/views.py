@@ -18,7 +18,6 @@ DELETE_SUCCESS = 'deleted'
 UPDATE_SUCCESS = 'updated'
 CREATE_SUCCESS = 'created'
 
-# Response: https://gist.github.com/mitchtabian/93f287bd1370e7a1ad3c9588b0b22e3d
 # Url: https://<your-domain>/api/blog/<slug>/
 # Headers: Authorization: Token <token>
 @api_view(['GET', ])
@@ -48,7 +47,6 @@ def api_detail_activity_view(request, slug):
 		serializer = ActivityPostSerializer(activity_post)
 		return Response(serializer.data)
 
-# Response: https://gist.github.com/mitchtabian/32507e93c530aa5949bc08d795ba66df
 # Url: https://<your-domain>/api/blog/<slug>/update
 # Headers: Authorization: Token <token>
 @api_view(['PUT',])
@@ -144,7 +142,6 @@ def api_is_author_of_activitypost(request, slug):
 	data['response'] = "You have permission to edit that."
 	return Response(data=data)
 
-# Response: https://gist.github.com/mitchtabian/a97be3f8b71c75d588e23b414898ae5c
 # Url: https://<your-domain>/api/blog/<slug>/delete
 # Headers: Authorization: Token <token>
 @api_view(['DELETE',])
@@ -188,7 +185,6 @@ def api_delete_activity_view(request, slug):
 		return Response(data=data)
 
 
-# Response: https://gist.github.com/mitchtabian/78d7dcbeab4135c055ff6422238a31f9
 # Url: https://<your-domain>/api/blog/create
 # Headers: Authorization: Token <token>
 @api_view(['POST'])
@@ -242,13 +238,12 @@ def api_create_activity_view(request):
 			return Response(data=data)
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# Response: https://gist.github.com/mitchtabian/ae03573737067c9269701ea662460205
 # Url: 
 #		1) list: https://<your-domain>/api/blog/list
 #		2) pagination: http://<your-domain>/api/blog/list?page=2
-#		3) search: http://<your-domain>/api/blog/list?search=mitch
+#		3) search: http://<your-domain>/api/blog/list?search=admin
 #		4) ordering: http://<your-domain>/api/blog/list?ordering=-date_updated
-#		4) search + pagination + ordering: <your-domain>/api/blog/list?search=mitch&page=2&ordering=-date_updated
+#		4) search + pagination + ordering: <your-domain>/api/blog/list?search=admin&page=2&ordering=-date_updated
 # Headers: Authorization: Token <token>
 class ApiBlogListView(ListAPIView):
 	queryset = BlogPost.objects.all()
