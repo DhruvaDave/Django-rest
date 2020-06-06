@@ -34,6 +34,5 @@ urlpatterns = [
 	path('activity/<slug>/delete', api_delete_activity_view, name="delete_activity"),
 	path('activity/create', api_create_activity_view, name="create_activity"),
 	path('activity/list', ApiActivityListView.as_view(), name="list_activity"),
-	# path('user/list', ApiUserListView.as_view(), name="user_activity"),
 	path('activity/<slug>/is_author', api_is_author_of_activitypost, name="is_author_activity"),
 ]
